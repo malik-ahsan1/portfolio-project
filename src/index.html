@@ -116,8 +116,7 @@
     </nav>
 
 
-    <div id="mainWrapper"
-        class="main-wrapper fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[92%] h-screen overflow-x-hidden md:overflow-hidden">
+    <div class="main-wrapper--touch w-[92%] h-screen overflow-x-hidden md:overflow-hidden">
         <canvas id="liquid-bg" class="absolute inset-0 z-0 pointer-events-none"></canvas>
         <div id="noise" class="absolute inset-0 w-full h-full z-10 pointer-events-none opacity-10 mix-blend-screen">
         </div>
@@ -125,7 +124,7 @@
         <div id="customOverlay" class="absolute inset-0 z-20 bg-black/30 pointer-events-none mix-blend-multiply">
         </div>
 
-        <div id="scroll-container" class="absolute top-0 left-0 w-full will-change-transform z-30">
+        <div class="absolute top-0 left-0 w-full will-change-transform z-30">
             <main class="w-[93%] mx-auto">
                 <!-- <section class="hero-section relative top-0 left-0 min-h-[100vh]">
                     <div class="hero_scroll text-lg top-6/12 left-0 absolute -translate-y-3/6 leading-10 h-96">
@@ -242,8 +241,9 @@
                     </div>
                 </section> -->
 
-                <section class="hero-section relative top-0 left-0 min-h-[100vh]">
-                    <div class="hero_scroll text-[0.7rem] top-[38%] left-0 absolute -translate-y-3/6 leading-10 h-96">
+                <section class="hero-section--touch relative top-0 left-0 min-h-[100vh]">
+                    <div
+                        class="hero_scroll--touch text-[0.7rem] absolute top-[15%] left-0 leading-10 h-96">
                         <p>
                             <span class="inline-flex items-center">
                                 01//04
@@ -262,17 +262,18 @@
                     </div>
 
                     <div
-                        class="hero-home-title absolute top-1/2 left-1/2 h-[24rem] -translate-x-1/2 -translate-y-1/2 leading-32 w-full">
-                        <div class="title-wrp relative w-full flex flex-col items-start text-[6rem] tracking-tight">
+                        class="hero-home-title--touch absolute top-[25%] h-[24rem] leading-32 w-full">
+                        <div
+                            class="title-wrp--touch relative w-full flex flex-col items-start text-[6rem] tracking-tight">
                             <div
                                 class="home-multi-strip absolute h-36 top-0 left-0 flex w-full whitespace-nowrap -translate-x-10">
-                                <span class="home-multi-c will-change-transform">
+                                <span class="home-multi-c--touch will-change-transform">
                                     MULTI -&nbsp;
                                 </span>
-                                <span class="home-multi-c will-change-transform">
+                                <span class="home-multi-c--touch will-change-transform">
                                     MULTI -&nbsp;
                                 </span>
-                                <span class="home-multi-c will-change-transform">
+                                <span class="home-multi-c--touch will-change-transform">
                                     MULTI -&nbsp;
                                 </span>
                             </div>
@@ -280,34 +281,34 @@
                             <div class="h-28"></div>
 
                             <div class="home-disc-strip h-36 -mt-6 flex w-full whitespace-nowrap translate-x-10">
-                                <span class="home-disc-c will-change-transform">
+                                <span class="home-disc-c--touch will-change-transform">
                                     DISCIPLINARY -&nbsp;
                                 </span>
-                                <span class="home-disc-c will-change-transform">
+                                <span class="home-disc-c--touch will-change-transform">
                                     DISCIPLINARY -&nbsp;
                                 </span>
-                                <span class="home-disc-c will-change-transform">
+                                <span class="home-disc-c--touch will-change-transform">
                                     DISCIPLINARY -&nbsp;
                                 </span>
-                                <span class="home-disc-c will-change-transform">
+                                <span class="home-disc-c--touch will-change-transform">
                                     DISCIPLINARY -&nbsp;
                                 </span>
                             </div>
 
-                            <div class="home-creative flex h-36 -mt-10 w-full whitespace-nowrap -translate-x-20">
-                                <span class="home-desig-c  will-change-transform -mt-4">
+                            <div class="home-creative-strip flex h-36 -mt-10 w-full whitespace-nowrap -translate-x-20">
+                                <span class="home-desig-c--touch  will-change-transform -mt-4">
                                     DESIGNER -&nbsp;
                                 </span>
-                                <span class="home-desig-c  will-change-transform -mt-4">
+                                <span class="home-desig-c--touch  will-change-transform -mt-4">
                                     DESIGNER -&nbsp;
                                 </span>
-                                <span class="home-desig-c  will-change-transform -mt-4">
+                                <span class="home-desig-c--touch  will-change-transform -mt-4">
                                     DESIGNER -&nbsp;
                                 </span>
                             </div>
 
                             <span>
-                                <div class="hero-description text-lg tracking-[-0.07rem] flex flex-col -gap-1">
+                                <div class="hero-description text-sm tracking-[-0.07rem] flex flex-col -gap-1 ml-2">
                                     <span class="translate-x-14 overflow-hidden">
                                         <span class="block">CREATIVE THINKING AND PROBLEM</span>
                                     </span>
@@ -327,7 +328,7 @@
                     </div>
 
                     <div id="circle-area-hero"
-                        class="absolute left-1/2 bottom-8 -translate-x-1/2 h-28 w-28 rounded-full">
+                        class="absolute left-1/2 -translate-x-1/2 bottom-8 h-28 w-28 rounded-full">
                         <div
                             class="absolute top-1/2 left-1/2 z-10 -translate-x-1/2 -translate-y-1/2 h-28 w-28 flex items-center justify-center">
                             <svg class="w-10 h-10 absolute circle-area-hero__arrow" viewBox="0 0 26 27" fill="none"
