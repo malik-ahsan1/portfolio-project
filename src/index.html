@@ -59,13 +59,13 @@
 
         <!-- Mobile Fullscreen Menu -->
         <div id="nav-menu"
-            class="hidden fixed top-0 left-0 w-full h-screen opacity-0 bg-black text-white flex-col items-center px-5 py-1 z-50 md:hidden">
+            class="hidden fixed top-0 left-0 w-full h-screen opacity-0 bg-black text-white flex-col items-center px-5 py-6 z-50 md:hidden">
             <!-- Close button (optional) -->
-            <div class="w-full flex justify-between">
+            <div class="w-full flex justify-between items-center">
                 <div class="logo text-[2.5rem] font-light sm:text-[2.5rem] md:text-[3.2rem]">
                     <h1>CK.</h1>
                 </div>
-                <button id="menu-close" class="text-white">
+                <button id="menu-close" class="text-white p-2">
                     <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
                         <path stroke-width="2"
                             d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" />
@@ -74,34 +74,34 @@
             </div>
 
             <!-- Nav links (centered vertically) -->
-            <div class="flex flex-col items-center justify-between gap-48 pt-44 font-light">
-                <div class="flex flex-col items-center gap-16">
+            <div class="flex flex-col items-center justify-center flex-1 gap-8 font-light">
+                <div class="flex flex-col items-center gap-6">
                     <div class="overflow-hidden">
-                        <div class="nav-menu-link"><a href="./index.html" class="text-lg tracking-wide">HOME</a></div>
+                        <div class="nav-menu-link"><a href="./index.html" class="text-xl tracking-wide">HOME</a></div>
                     </div>
-                    <div class="overflow-hidden px-6 py-1.5 border border-white/30 rounded-full">
-                        <div class="nav-menu-link"><a href="./projects.html" class="text-lg tracking-wide">PROJECTS</a>
+                    <div class="overflow-hidden px-6 py-2 border border-white/30 rounded-full">
+                        <div class="nav-menu-link"><a href="./projects.html" class="text-xl tracking-wide">PROJECTS</a>
                         </div>
                     </div>
-                    <div class="overflow-hidden px-10 py-1.5 border border-white/30 rounded-full">
-                        <div class="nav-menu-link"><a href="#" class="text-lg tracking-wide">ABOUT</a></div>
+                    <div class="overflow-hidden px-8 py-2 border border-white/30 rounded-full">
+                        <div class="nav-menu-link"><a href="#" class="text-xl tracking-wide">ABOUT</a></div>
                     </div>
-                </div>
-                <!-- Freelance button at the bottom -->
-                <div class="px-5 py-2 border border-white/30 rounded-full text-lg overflow-hidden">
-                    <div class="nav-menu-link">
-                        <a href="#">AVAILABLE FOR FREELANCE</a>
+                    <!-- Freelance button -->
+                    <div class="px-6 py-2 border border-white/30 rounded-full text-base overflow-hidden mt-6">
+                        <div class="nav-menu-link">
+                            <a href="#" class="tracking-wide">AVAILABLE FOR FREELANCE</a>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="nav-bottom-mobile mt-10 w-full">
+            <div class="nav-bottom-mobile mt-6 w-full">
                 <svg width="100%" height="1" xmlns="http://www.w3.org/2000/svg">
                     <line id="animated-line-nav" x1="0" y1="0.5" x2="100%" y2="0.5" stroke="white" stroke-opacity="0.4"
                         stroke-width="1" />
                 </svg>
 
-                <div class="nav-bottom-links flex items-center justify-between mt-9 text-base font-light">
+                <div class="nav-bottom-links flex items-center justify-between mt-4 text-base font-light">
                     <span>IG</span>
                     <span>EM</span>
                     <span>TW</span>

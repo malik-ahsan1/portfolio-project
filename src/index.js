@@ -779,18 +779,8 @@ messageMeButton.addEventListener('click', () => {
 // Initialize all functionality when page loads
 window.addEventListener('load', () => {
     initializeScroll();
-    initializeLine(animatedLineNav);
-    initializeParagraphAnimation(heroPara);
-    initializeCircle(
-        detectionAreaHero,
-        topCircleHero,
-        bottomCircleHero,
-        () => innerContentHero,
-        onClickHeroCircle,
-        mouseenterHeroCircle,
-        mouseleaveHeroCircle
-    );
-    initializeMainCircle(mainCircleHero);
+
+    // Initialize all animations and interactions
     initializeLine(animatedLineIntro);
     initializeHeader(aboutHeader);
     initializeParagraphAnimation(introPara);
@@ -818,9 +808,20 @@ window.addEventListener('load', () => {
     initializeMainCircle(mainCircleProjects);
     initializeParagraphAnimation(projectsPara);
     initializeProjectHover();
-    // initializeLine(animatedLineCapabilites);
-    // initializeHeader(capabilitiesHeader);
 
+    // Initialize hero circle
+    initializeCircle(
+        detectionAreaHero,
+        topCircleHero,
+        bottomCircleHero,
+        () => innerContentHero,
+        onClickHeroCircle,
+        mouseenterHeroCircle,
+        mouseleaveHeroCircle
+    );
+    initializeMainCircle(mainCircleHero);
+
+    // Initialize moving strips
     createLiquidHorizontalScroll(nameMovingStrip, 7);
     createLiquidHorizontalScroll(multiMovingStrip, 8);
     createLiquidHorizontalScroll(discMovingStrip, 13, 'r');
