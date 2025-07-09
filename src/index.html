@@ -42,8 +42,8 @@
 
         <!-- Mobile Fullscreen Menu -->
         <div id="nav-menu"
-            class="hidden fixed top-0 left-0 opacity-0 bg-black text-white flex-col items-center w-screen h-screen py-1 z-50 md:hidden overflow-y-auto">
-            <div class="w-[92%] h-full flex flex-col justify-between min-h-screen">
+            class="hidden fixed top-0 left-0 opacity-0 bg-black text-white flex-col items-center w-screen h-screen py-1 z-50 md:hidden">
+            <div class="w-[92%] h-full flex flex-col justify-between overflow-hidden">
                 <!-- Close button (optional) -->
                 <div class="w-full flex justify-between items-center">
                     <div class="logo text-[2.5rem] font-light sm:text-[2.5rem] md:text-[3.2rem]">
@@ -98,11 +98,11 @@
         </div>
     </nav>
 
-    <div class="main-wrapper--touch h-full w-full overflow-x-hidden absolute top-0 left-0">
+    <!-- <div class="main-wrapper--touch h-full w-full overflow-x-hidden">
         <main>
-            <div class="second-wrapper--touch w-full absolute top-0 left-0 z-30">
+            <div class="second-wrapper--touch w-full">
                 <main class="w-[92%] mx-auto">
-                    <section class="hero-section--touch relative top-0 left-0 min-h-[100vh]">
+                    <section class="hero-section--touch min-h-[100vh]">
                         <div class="hero_scroll--touch text-[0.7rem] absolute top-[15%] left-0 leading-10 h-96">
                             <p>
                                 <span class="inline-flex items-center">
@@ -186,10 +186,9 @@
                             </div>
                         </div>
 
-                        <div id="circle-area-hero--touch"
-                            class="absolute left-1/2 -translate-x-1/2 bottom-8 h-28 w-28 rounded-full">
+                        <div id="circle-area-hero--touch" class="h-28 w-28 rounded-full">
                             <div
-                                class="absolute top-1/2 left-1/2 z-10 -translate-x-1/2 -translate-y-1/2 h-28 w-28 flex items-center justify-center">
+                                class="h-28 w-28 flex items-center justify-center">
                                 <svg class="w-10 h-10 absolute circle-area-hero__arrow--touch" viewBox="0 0 26 27"
                                     fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -420,14 +419,14 @@
                     </footer>
             </div>
         </main>
-    </div>
+    </div> -->
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"
         integrity="sha512-NcZdtrT77bJr4STcmsGAESr06BYGE8woZdSdEgqnpyqac7sugNO+Tr4bGwGF3MsnEkGKhU2KL2xh6Ec+BqsaHA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script type="module" src="./main.js"></script>
-    <script type="module" src="./index.js"></script>
+    <!-- <script type="module" src="./index.js"></script> -->
 </body>
 
 </html>

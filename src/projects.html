@@ -371,7 +371,7 @@
                         const info = slide.querySelector('.project-info');
 
                         gsap.set(img, { scale: 1.05, opacity: 0.7 });
-                        gsap.set(info, { y: 20, opacity: 0.7 });
+                        gsap.set(info, { y: 30, opacity: 0 });
                     }
                 });
 
@@ -436,6 +436,17 @@
                         ease: "back.out(1.7)"
                     }
                 );
+
+                 // Reset all other slides
+                this.slides.forEach((slide, index) => {
+                    if (index !== this.currentIndex) {
+                        const img = slide.querySelector('.project-image');
+                        const info = slide.querySelector('.project-info');
+
+                        gsap.set(img, { scale: 1.05, opacity: 0.7 });
+                        gsap.set(info, { y: 30, opacity: 0 });
+                    }
+                });
             }
         }
 
