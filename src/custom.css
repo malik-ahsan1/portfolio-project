@@ -12,6 +12,8 @@
 
 * {
     font-family: 'PP Telegraf';
+    max-width: 100vw;
+    box-sizing: border-box;
 }
 
 html,
@@ -19,8 +21,12 @@ body {
     margin: 0;
     padding: 0;
     background: black;
-    overflow: hidden;
+    overflow-x: hidden;
+    /* Prevent horizontal scrolling */
+    overflow-y: auto;
+    /* Allow vertical scrolling */
     height: 100%;
+    width: 100%;
 }
 
 /* Hide scrollbar in Webkit browsers */
@@ -35,15 +41,18 @@ body {
     /* Firefox */
 }
 
- /* Optional: Hide scrollbar */
- #carousel-wrapper::-webkit-scrollbar {
-     display: none;
- }
+/* Optional: Hide scrollbar */
+#carousel-wrapper::-webkit-scrollbar {
+    display: none;
+}
 
- #carousel-wrapper {
-     -ms-overflow-style: none;
-     scrollbar-width: none;
- }
+#carousel-wrapper {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    max-width: 100vw;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
 
 .project-bullet {
     transition: background-color 0.3s ease;
@@ -61,7 +70,8 @@ body {
     transform: scale(1.4, 1);
 }
 
-.project-counter span, .project-title span {
+.project-counter span,
+.project-title span {
     will-change: transform, opacity;
 }
 
@@ -94,4 +104,78 @@ body {
 
 .floating-label {
     transition: all 0.3s ease;
+}
+
+/* Prevent horizontal overflow globally */
+
+/* Ensure main wrapper doesn't overflow */
+.main-wrapper--touch {
+    max-width: 100vw;
+    overflow-x: hidden;
+}
+
+/* Fix text strips to prevent overflow */
+.home-multi-strip,
+.home-disc-strip,
+.home-creative-strip,
+.moving-strip {
+    max-width: 100vw;
+    overflow: hidden;
+}
+
+/* Make sure all sections respect viewport width */
+section {
+    max-width: 100vw;
+    overflow-x: hidden;
+}
+
+/* Force all child elements to respect container width */
+.w-screen {
+    width: 100vw !important;
+    max-width: 100vw !important;
+}
+
+/* Fix moving strips spacing - prevent spans from getting closer on smaller screens */
+.home-multi-strip span,
+.home-disc-strip span,
+.home-creative-strip span,
+.moving-strip p {
+    flex-shrink: 0;
+    white-space: nowrap;
+    min-width: max-content;
+    display: inline-block;
+}
+
+/* Ensure consistent spacing for the hero title strips */
+.home-multi-c--touch,
+.home-disc-c--touch,
+.home-desig-c--touch {
+    flex-shrink: 0;
+    min-width: max-content;
+    white-space: nowrap;
+    margin-right: 0;
+    padding-right: 0;
+}
+
+/* Fix the moving strip at the bottom */
+.marquee {
+    flex-shrink: 0;
+    min-width: max-content;
+    white-space: nowrap;
+    display: inline-block;
+}
+
+/* Ensure the strips maintain their width */
+.home-multi-strip,
+.home-disc-strip,
+.home-creative-strip {
+    min-width: 200vw;
+    /* Make wider than viewport to ensure continuous text */
+    flex-shrink: 0;
+}
+
+.moving-strip {
+    min-width: 200vw;
+    /* Make wider than viewport */
+    flex-shrink: 0;
 }

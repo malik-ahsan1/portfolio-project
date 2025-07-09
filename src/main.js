@@ -1,4 +1,4 @@
-import { drawLine } from './index.js';
+import { drawLine } from '../index.js';
 
 // Settings
 const MIN_BLOBS = 8;
