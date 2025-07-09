@@ -26,6 +26,26 @@ function onWheel(e) {
     targetY = scrollObj.y;
 }
 
+let lastScrollTop = 0;
+
+window.addEventListener(
+    'scroll',
+    function () {
+        const currentScroll =
+            window.scrollY || document.documentElement.scrollTop;
+
+        if (currentScroll > lastScrollTop && !isNavbarHidden) {
+            console.log('Scrolled down');
+            // You can call your function here
+        } else if (currentScroll < lastScrollTop && isNavbarHidden) {
+            console.log('Scrolled up');
+        }
+
+        lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // Avoid negative values
+    },
+    false
+);
+
 // Initialize scroll functionality
 function initializeScroll() {
     document.addEventListener('wheel', onWheel, { passive: false });
