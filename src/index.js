@@ -26,25 +26,26 @@ function onWheel(e) {
     targetY = scrollObj.y;
 }
 
-let lastScrollTop = 0;
+let startY = 0;
 
-window.addEventListener(
-    'scroll',
-    function () {
-        const currentScroll =
-            window.scrollY || document.documentElement.scrollTop;
+window.addEventListener('touchstart', (e) => {
+    startY = e.touches[0].clientY;
+});
 
-        if (currentScroll > lastScrollTop && !isNavbarHidden) {
-            console.log('Scrolled down');
-            // You can call your function here
-        } else if (currentScroll < lastScrollTop && isNavbarHidden) {
-            console.log('Scrolled up');
-        }
+window.addEventListener('touchmove', (e) => {
+    const currentY = e.touches[0].clientY;
 
-        lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // Avoid negative values
-    },
-    false
-);
+    if (currentY < startY && !isNavbarHidden) {
+        isNavbarHidden = true;
+        moveUpNavbar();
+    } else if (currentY > startY && isNavbarHidden) {
+        isNavbarHidden = false;
+        moveDownNavbar();
+    }
+
+    startY = currentY;
+});
+
 
 // Initialize scroll functionality
 function initializeScroll() {
