@@ -182,10 +182,14 @@ const navBottomLinks = document.querySelector('.nav-bottom-links');
 // GSAP Timeline
 
 function animateMobileNav() {
+    // Make sure menu is displayed first
+    navMenu.classList.remove('hidden');
+    navMenu.style.display = 'flex';
+
     const tl = gsap.timeline({
         defaults: { ease: 'power2.out' },
     });
-    
+
     tl.to(navMenu, {
         opacity: 1,
         pointerEvents: 'auto',
@@ -215,13 +219,16 @@ function animateMobileNav() {
             ease: 'power2.out',
         },
         '-=0.2'
-    )
+    );
 
     drawLine(animatedLineNav, 0.5);
 }
 
 // Open menu
 toggleBtn.addEventListener('click', () => {
+    navMenu.classList.remove('hidden');
+    // Disable body scroll when menu is open on mobile
+    document.body.style.overflow = 'hidden';
     animateMobileNav();
 });
 
@@ -232,10 +239,13 @@ closeBtn.addEventListener('click', () => {
         pointerEvents: 'none',
         duration: 0.3,
         onComplete: () => {
+            navMenu.classList.add('hidden');
+            navMenu.style.display = 'none';
+            // Re-enable body scroll when menu is closed
+            document.body.style.overflow = '';
         },
     });
 });
-
 
 // PROJECT SECTION ANIMATIONS
 const wrapper = document.getElementById('carousel-wrapper');
