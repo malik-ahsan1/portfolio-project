@@ -222,7 +222,6 @@ function animateMobileNav() {
 
 // Open menu
 toggleBtn.addEventListener('click', () => {
-    navMenu.classList.remove('hidden');
     animateMobileNav();
 });
 
@@ -233,7 +232,6 @@ closeBtn.addEventListener('click', () => {
         pointerEvents: 'none',
         duration: 0.3,
         onComplete: () => {
-            navMenu.classList.add('hidden');
         },
     });
 });
