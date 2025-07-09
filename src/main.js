@@ -1,4 +1,4 @@
-// import { drawLine } from './index.js';
+import { drawLine } from './index.js';
 
 // // Settings
 // const MIN_BLOBS = 8;
@@ -221,7 +221,7 @@ function animateMobileNav() {
         '-=0.2'
     );
 
-    // drawLine(animatedLineNav, 0.5);
+    drawLine(animatedLineNav, 0.5);
 }
 
 // Open menu
