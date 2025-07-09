@@ -227,8 +227,15 @@ function animateMobileNav() {
 // Open menu
 toggleBtn.addEventListener('click', () => {
     navMenu.classList.remove('hidden');
-    // Disable body scroll when menu is open on mobile
+    // Disable body scroll when menu is open on mobile, but allow nav menu to scroll
     document.body.style.overflow = 'hidden';
+    document.body.style.position = 'fixed';
+    document.body.style.width = '100%';
+
+    // Ensure nav menu can scroll
+    navMenu.style.overflow = 'auto';
+    navMenu.style.webkitOverflowScrolling = 'touch'; // Smooth scrolling on iOS
+
     animateMobileNav();
 });
 
@@ -241,8 +248,15 @@ closeBtn.addEventListener('click', () => {
         onComplete: () => {
             navMenu.classList.add('hidden');
             navMenu.style.display = 'none';
+
             // Re-enable body scroll when menu is closed
             document.body.style.overflow = '';
+            document.body.style.position = '';
+            document.body.style.width = '';
+
+            // Reset nav menu overflow
+            navMenu.style.overflow = '';
+            navMenu.style.webkitOverflowScrolling = '';
         },
     });
 });
