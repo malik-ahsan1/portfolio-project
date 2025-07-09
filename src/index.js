@@ -46,7 +46,6 @@ window.addEventListener('touchmove', (e) => {
     startY = currentY;
 });
 
-
 // Initialize scroll functionality
 function initializeScroll() {
     document.addEventListener('wheel', onWheel, { passive: false });
@@ -434,6 +433,52 @@ function mouseleaveHeroCircle() {
         duration: 1.5,
         ease: 'expo.out',
     });
+}
+
+// =============================================================================
+// MOBILE HERO CIRCLE INTERACTION
+// =============================================================================
+
+// Mobile hero circle click functionality
+function initializeMobileHeroCircle() {
+    const mobileHeroCircle = document.getElementById('circle-area-hero--touch');
+    const introSection = document.getElementById('intro-section-mobile');
+
+    if (mobileHeroCircle && introSection) {
+        mobileHeroCircle.addEventListener('click', function () {
+            // Check if we're on mobile
+            const isMobile = window.innerWidth < 768;
+
+            if (isMobile) {
+                console.log(
+                    'Mobile hero circle clicked - scrolling to intro section'
+                );
+
+                // Smooth scroll to intro section
+                introSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start',
+                });
+
+                // Alternative method using native scroll
+                // const introPosition = introSection.offsetTop - 80; // 80px offset for navbar
+                // window.scrollTo({
+                //     top: introPosition,
+                //     behavior: 'smooth'
+                // });
+            }
+        });
+
+        // Add hover effects for mobile circle
+        mobileHeroCircle.addEventListener('touchstart', function () {
+            mobileHeroCircle.style.transform = 'scale(0.95)';
+            mobileHeroCircle.style.transition = 'transform 0.2s ease';
+        });
+
+        mobileHeroCircle.addEventListener('touchend', function () {
+            mobileHeroCircle.style.transform = 'scale(1)';
+        });
+    }
 }
 
 // =============================================================================
@@ -838,4 +883,7 @@ window.addEventListener('load', () => {
         // animateParagraph(heroPara);
         // animateCircle(mainCircleHero, innerContentHero);
     }, 200);
+
+    // Initialize mobile hero circle interaction
+    initializeMobileHeroCircle();
 });

@@ -349,6 +349,9 @@
   .z-2 {
     z-index: 2;
   }
+  .z-5 {
+    z-index: 5;
+  }
   .z-10 {
     z-index: 10;
   }
@@ -483,6 +486,9 @@
   }
   .mb-16 {
     margin-bottom: calc(var(--spacing) * 16);
+  }
+  .mb-20 {
+    margin-bottom: calc(var(--spacing) * 20);
   }
   .mb-24 {
     margin-bottom: calc(var(--spacing) * 24);
@@ -682,11 +688,17 @@
   .w-\[\%\] {
     width: %;
   }
+  .w-\[2rem\] {
+    width: 2rem;
+  }
   .w-\[9\%\] {
     width: 9%;
   }
   .w-\[12\.4rem\] {
     width: 12.4rem;
+  }
+  .w-\[20rem\] {
+    width: 20rem;
   }
   .w-\[21\.813rem\] {
     width: 21.813rem;
