@@ -5,8 +5,6 @@
 // Scroll state variables
 let currentY = 0;
 let targetY = 0;
-let touchCurrentY = 0;
-let touchTargetY = 0;
 const ease = 0.6;
 
 // Animation state variables
@@ -27,19 +25,6 @@ function onWheel(e) {
     scrollObj.y = Math.max(Math.min(scrollObj.y, 0), -maxScroll);
     targetY = scrollObj.y;
 }
-
-function onTouch(e) {
-    e.preventDefault();
-
-    scrollObj.y -= e.touches[0].clientY * ease;
-    const maxScroll = 3900;
-    scrollObj.y = Math.max(Math.min(scrollObj.y, 0), -maxScroll);
-    targetY = scrollObj.y;
-}
-
-window.addEventListener('touchmove', (e) => {
-    console.log(e.touches[0].clientY);
-});
 
 // Initialize scroll functionality
 function initializeScroll() {
@@ -778,48 +763,48 @@ messageMeButton.addEventListener('click', () => {
 
 // Initialize all functionality when page loads
 window.addEventListener('load', () => {
-    initializeScroll();
+    // initializeScroll();
 
     // Initialize all animations and interactions
-    initializeLine(animatedLineIntro);
-    initializeHeader(aboutHeader);
-    initializeParagraphAnimation(introPara);
-    initializeCircle(
-        detectionAreaIntro,
-        topCircleIntro,
-        bottomCircleIntro,
-        () => innerContentIntro,
-        () => {},
-        mouseenterIntroCircle,
-        mouseleaveIntroCircle
-    );
-    initializeMainCircle(mainCircleIntro);
-    initializeLine(animatedLineProjects);
-    initializeHeader(projectsHeader);
-    initializeCircle(
-        detectionAreaProjects,
-        topCircleProjects,
-        bottomCircleProjects,
-        () => innerContentProjects,
-        () => {},
-        mouseenterProjectsCircle,
-        mouseleaveProjectsCircle
-    );
-    initializeMainCircle(mainCircleProjects);
-    initializeParagraphAnimation(projectsPara);
-    initializeProjectHover();
+    // initializeLine(animatedLineIntro);
+    // initializeHeader(aboutHeader);
+    // initializeParagraphAnimation(introPara);
+    // initializeCircle(
+    //     detectionAreaIntro,
+    //     topCircleIntro,
+    //     bottomCircleIntro,
+    //     () => innerContentIntro,
+    //     () => {},
+    //     mouseenterIntroCircle,
+    //     mouseleaveIntroCircle
+    // );
+    // initializeMainCircle(mainCircleIntro);
+    // initializeLine(animatedLineProjects);
+    // initializeHeader(projectsHeader);
+    // initializeCircle(
+    //     detectionAreaProjects,
+    //     topCircleProjects,
+    //     bottomCircleProjects,
+    //     () => innerContentProjects,
+    //     () => {},
+    //     mouseenterProjectsCircle,
+    //     mouseleaveProjectsCircle
+    // );
+    // initializeMainCircle(mainCircleProjects);
+    // initializeParagraphAnimation(projectsPara);
+    // initializeProjectHover();
 
     // Initialize hero circle
-    initializeCircle(
-        detectionAreaHero,
-        topCircleHero,
-        bottomCircleHero,
-        () => innerContentHero,
-        onClickHeroCircle,
-        mouseenterHeroCircle,
-        mouseleaveHeroCircle
-    );
-    initializeMainCircle(mainCircleHero);
+    // initializeCircle(
+    //     detectionAreaHero,
+    //     topCircleHero,
+    //     bottomCircleHero,
+    //     () => innerContentHero,
+    //     onClickHeroCircle,
+    //     mouseenterHeroCircle,
+    //     mouseleaveHeroCircle
+    // );
+    // initializeMainCircle(mainCircleHero);
 
     // Initialize moving strips
     createLiquidHorizontalScroll(nameMovingStrip, 7);
@@ -829,7 +814,7 @@ window.addEventListener('load', () => {
 
     // Start main circle animation after delay
     setTimeout(() => {
-        animateParagraph(heroPara);
-        animateCircle(mainCircleHero, innerContentHero);
+        // animateParagraph(heroPara);
+        // animateCircle(mainCircleHero, innerContentHero);
     }, 200);
 });
