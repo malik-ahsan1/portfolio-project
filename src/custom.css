@@ -1,0 +1,97 @@
+@font-face {
+    font-family: 'PP Telegraf';
+    src: url(./../assets/fonts/PP\ Telegraf.ttf);
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: 'PP Telegraf';
+    src: url(./../assets/fonts/pptelegraf.woff2);
+    font-weight: 400;
+}
+
+* {
+    font-family: 'PP Telegraf';
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    background: black;
+    overflow: hidden;
+    height: 100%;
+}
+
+/* Hide scrollbar in Webkit browsers */
+body::-webkit-scrollbar {
+    display: none;
+}
+
+body {
+    -ms-overflow-style: none;
+    /* IE/Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+ /* Optional: Hide scrollbar */
+ #carousel-wrapper::-webkit-scrollbar {
+     display: none;
+ }
+
+ #carousel-wrapper {
+     -ms-overflow-style: none;
+     scrollbar-width: none;
+ }
+
+.project-bullet {
+    transition: background-color 0.3s ease;
+    /* initial scale 1 */
+    transform: scale(1, 1);
+    background-color: rgba(255, 255, 255, 0.4);
+    /* match bg-white/40 */
+
+    will-change: scaleX, background-color, opacity;
+}
+
+.project-bullet.active {
+    background-color: rgba(255, 255, 255, 1);
+    /* full opacity */
+    transform: scale(1.4, 1);
+}
+
+.project-counter span, .project-title span {
+    will-change: transform, opacity;
+}
+
+.image-container {
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+}
+
+#scroll-container {
+    transform: translate3d(0, 0, 0);
+    will-change: transform;
+    /* Force GPU layer */
+}
+
+#textHover {
+    will-change: opacity;
+    /* Force GPU layer */
+}
+
+.project-title-featured span {
+    will-change: transform, opacity;
+}
+
+.glass {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.floating-label {
+    transition: all 0.3s ease;
+}

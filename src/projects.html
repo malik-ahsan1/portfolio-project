@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./custom.css">
+    <link rel="stylesheet" href="./output.css">
+</head>
+
+<body class="text-white w-[100vw] h-[100vh] overflow-hidden bg-black relative">
+
+    <canvas id="liquid-bg" class="fixed left-0 right-0 w-[100vw] h-[100vh] z-0 pointer-events-none"></canvas>
+    <div id="noise"
+        class="fixed left-0 right-0 w-[100vw] h-[100vh] z-10 pointer-events-none opacity-[12%] mix-blend-screen"></div>
+
+    <nav class="flex justify-between items-center pt-12 px-20">
+        <div class="logo cursor-pointer">
+            <a href="./index.html">
+                <h1 class="text-[3.2rem]">CHRIS K.</h1>
+            </a>
+        </div>
+        <ul class="nav-links flex gap-11">
+            <li><a href="#"
+                    class="inline-flex items-center px-6 py-2.5 border border-white/30 rounded-full text-lg tracking-wide leading-none">PROJECTS</a>
+            </li>
+            <li><a href="#"
+                    class="inline-flex items-center px-6 py-2.5 border border-white/30 rounded-full text-lg tracking-wide leading-none">ABOUT</a>
+            </li>
+        </ul>
+        <button
+            class="inline-flex items-center px-6 py-2.5 border border-white/30 rounded-full text-lg tracking-wide leading-none">AVAILABLE
+            FOR
+            FREELANCE</button>
+    </nav>
+
+    <main class="h-full">
+        <div class="h-full ">
+            <div
+                class="bullets-container  absolute top-2/4 right-[8%] -translate-2/4 flex flex-col justify-start items-center py-4 w-32 h-40">
+                <div class="project-bullet h-1 w-6 bg-white/40 rounded-4xl mb-2 origin-[left_center]"></div>
+                <div class="project-bullet h-1 w-6 bg-white/40 rounded-4xl mb-2 origin-[left_center]"></div>
+                <div class="project-bullet h-1 w-6 bg-white/40 rounded-4xl mb-2 origin-[left_center]"></div>
+                <div class="project-bullet h-1 w-6 bg-white/40 rounded-4xl mb-2 origin-[left_center]"></div>
+                <div class="project-bullet h-1 w-6 bg-white/40 rounded-4xl mb-2 origin-[left_center]"></div>
+                <div class="project-bullet h-1 w-6 bg-white/40 rounded-4xl mb-2 origin-[left_center]"></div>
+                <div class="project-bullet h-1 w-6 bg-white/40 rounded-4xl origin-[left_center]"></div>
+            </div>
+
+            <div class="projects-images fixed top-[calc(50%_-_32.5vh)] left-[calc(50%_-_60vh)] ">
+                <div
+                    class="image-container h-[65vh] w-[120vh] absolute rounded-4xl bg-[url('./../assets/images/Kapsul.jpg')] bg-cover bg-center">
+                </div>
+                <div
+                    class="image-container h-[65vh] w-[120vh] absolute rounded-4xl bg-[url('./../assets/images/LingLing.jpg')] bg-cover bg-center">
+                </div>
+                <div
+                    class="image-container h-[65vh] w-[120vh] absolute rounded-4xl bg-[url('./../assets/images/Vistria.jpg')] bg-cover bg-center">
+                </div>
+                <div
+                    class="image-container h-[65vh] w-[120vh] absolute rounded-4xl bg-[url('./../assets/images/Taylormade.jpg')] bg-cover bg-center">
+                </div>
+                <div
+                    class="image-container h-[65vh] w-[120vh] absolute rounded-4xl bg-[url('./../assets/images/LingLing-2.jpg')] bg-cover bg-center">
+                </div>
+                <div
+                    class="image-container h-[65vh] w-[120vh] absolute rounded-4xl bg-[url('./../assets/images/Irvine.jpg')] bg-cover bg-center">
+                </div>
+                <div
+                    class="image-container h-[65vh] w-[120vh] absolute rounded-4xl bg-[url('./../assets/images/Four_Sigmatic.jpg')] bg-cover bg-center">
+                </div>
+            </div>
+
+            <div class="project-counter fixed top-[calc(55vh_+_5rem)] text-2xl leading-7 left-32 flex">
+                <p id="number-wrapper" class="relative overflow-hidden w-24">
+                    00.0
+                    <span class="inline-block absolute top-0 text-center">1</span>
+                    <span class="inline-block absolute top-0 text-center">2</span>
+                    <span class="inline-block absolute top-0 text-center">3</span>
+                    <span class="inline-block absolute top-0 text-center">4</span>
+                    <span class="inline-block absolute top-0 text-center">5</span>
+                    <span class="inline-block absolute top-0 text-center">6</span>
+                    <span class="inline-block absolute top-0 text-center">7</span>
+                </p>
+            </div>
+
+            <div class="counter-underline h-px w-[12.4rem] bg-white origin-left fixed top-[calc(55vh_+_8rem)]">
+            </div>
+
+            <div
+                class="projects-titles fixed left-60 top-[55vh] h-44 min-w-3/4 text-[13.5rem] tracking-[-0.64rem] font-medium pointer-events-none">
+                <h2 class="project-title absolute top-0 left-0 overflow-hidden h-48 leading-48">
+                    <span class="inline-block">KAPSUL</span>
+                </h2>
+                <h2 class="project-title absolute top-0 left-0 overflow-hidden h-48 leading-48">
+                    <span class="inline-block">LING LING</span>
+                </h2>
+                <h2 class="project-title absolute top-0 left-0 overflow-hidden h-48 leading-48">
+                    <span class="inline-block">VISTRIA</span>
+                </h2>
+                <h2 class="project-title absolute top-0 left-0 overflow-hidden h-48 leading-48 ">
+                    <span class="inline-block">TAYLORMADE</span>
+                </h2>
+                <h2 class="project-title absolute top-0 left-0 overflow-hidden h-48 leading-48 ">
+                    <span class="inline-block">LING LING</span>
+                </h2>
+                <h2 class="project-title absolute top-0 left-0 overflow-hidden h-96 leading-48"
+                    style="transform: translateY(-6.5rem);">
+                    <span class="inline-block">IRVINE COMPANY</span>
+                </h2>
+                <h2 class="project-title absolute top-0 left-0 overflow-hidden h-96 leading-48"
+                    style="transform: translateY(-6.5rem);">
+                    <span class="inline-block">FOUR SIGMATIC</span>
+                </h2>
+            </div>
+
+            <div
+                class="project-descriptions fixed left-1/2 w-[80rem] h-[5vh] top-[calc(50%+65vh/2+25px)] -translate-x-1/2 text-[0.9rem] opacity-100 transition-opacity duration-200">
+                <div
+                    class="project-info absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex justify-center gap-11 tracking-[-0.004rem] opacity-100 ">
+                    <div>
+                        <p>KAPSUL</p>
+                        <p>WEB DESIGN + BRAND CAMPAIGN</p>
+                    </div>
+                    <div>
+                        <p>ART DIRECTION + DESIGN</p>
+                        <p>04.14.2020</p>
+                    </div>
+                </div>
+                <div
+                    class="project-info absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex justify-center gap-11 tracking-[-0.004rem] opacity-0">
+                    <div>
+                        <p>AJINOMOTO FOODS NORTH AMERICA</p>
+                        <p>BRAND CAMPAIGN</p>
+                    </div>
+                    <div>
+                        <p>ART DIRECTION + DESIGN</p>
+                        <p>09.29.2020</p>
+                    </div>
+                </div>
+                <div
+                    class="project-info absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex justify-center gap-11 tracking-[-0.004rem] opacity-0">
+                    <div>
+                        <p>THE VISTA GROUP</p>
+                        <p>WEB DESIGN</p>
+                    </div>
+                    <div>
+                        <p>ART DIRECTION + DESIGN</p>
+                        <p>10.13.2022</p>
+                    </div>
+                </div>
+                <div
+                    class="project-info absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex justify-center gap-11 tracking-[-0.004rem] opacity-0">
+                    <div>
+                        <p>TAYLORMADE</p>
+                        <p>PRODUCT DESIGN + WEB DESIGN</p>
+                    </div>
+                    <div>
+                        <p>ART DIRECTION + DESIGN</p>
+                        <p>03.11.2022</p>
+                    </div>
+                </div>
+                <div
+                    class="project-info absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex justify-center gap-11 tracking-[-0.004rem] opacity-0">
+                    <div>
+                        <p>AJINOMOTO FOODS NORTH AMERICA</p>
+                        <p>ANIMATED VIDEO + WEB DESIGN</p>
+                    </div>
+                    <div>
+                        <p>ART DIRECTION + DESIGN</p>
+                        <p>12.16.2021</p>
+                    </div>
+                </div>
+                <div
+                    class="project-info absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex justify-center gap-11 tracking-[-0.004rem] opacity-0">
+                    <div>
+                        <p>IRVINE COMPANY</p>
+                        <p>PRODUCT DESIGN + WEB DESIGN</p>
+                    </div>
+                    <div>
+                        <p>ART DIRECTION + DESIGN</p>
+                        <p>03.31.2023</p>
+                    </div>
+                </div>
+                <div
+                    class="project-info absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex justify-center gap-11 tracking-[-0.004rem] opacity-0">
+                    <div>
+                        <p>FOUR SIGMATIC</p>
+                        <p>WEB DESIGN + BRAND EVOLUTION</p>
+                    </div>
+                    <div>
+                        <p>ART DIRECTION + DESIGN</p>
+                        <p>05.08.2023</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"
+        integrity="sha512-NcZdtrT77bJr4STcmsGAESr06BYGE8woZdSdEgqnpyqac7sugNO+Tr4bGwGF3MsnEkGKhU2KL2xh6Ec+BqsaHA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="./main.js"></script>
+    <script src="./projects.js"></script>
+</body>
+
+</html>
