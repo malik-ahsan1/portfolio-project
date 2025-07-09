@@ -581,9 +581,9 @@ function createLiquidHorizontalScroll(
 }
 
 const nameMovingStrip = document.querySelectorAll('.marquee');
-const multiMovingStrip = document.querySelectorAll('.home-multi-c');
-const discMovingStrip = document.querySelectorAll('.home-disc-c');
-const desigMovingStrip = document.querySelectorAll('.home-desig-c');
+const multiMovingStrip = document.querySelectorAll('.home-multi-c--touch');
+const discMovingStrip = document.querySelectorAll('.home-disc-c--touch');
+const desigMovingStrip = document.querySelectorAll('.home-desig-c--touch');
 
 // =============================================================================
 // PROJECTS LINE ANIMATION
