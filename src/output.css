@@ -575,11 +575,17 @@
   .h-48 {
     height: calc(var(--spacing) * 48);
   }
+  .h-70 {
+    height: calc(var(--spacing) * 70);
+  }
   .h-80 {
     height: calc(var(--spacing) * 80);
   }
   .h-96 {
     height: calc(var(--spacing) * 96);
+  }
+  .h-\[0vh\] {
+    height: 0vh;
   }
   .h-\[2rem\] {
     height: 2rem;
@@ -653,17 +659,41 @@
   .h-\[50rem\] {
     height: 50rem;
   }
+  .h-\[50vh\] {
+    height: 50vh;
+  }
   .h-\[60vh\] {
     height: 60vh;
   }
   .h-\[65vh\] {
     height: 65vh;
   }
+  .h-\[70\%\] {
+    height: 70%;
+  }
+  .h-\[70\] {
+    height: 70;
+  }
+  .h-\[70vh\] {
+    height: 70vh;
+  }
   .h-\[78vh\] {
     height: 78vh;
   }
+  .h-\[90\%\] {
+    height: 90%;
+  }
+  .h-\[90\] {
+    height: 90;
+  }
+  .h-\[90vh\] {
+    height: 90vh;
+  }
   .h-\[100vh\] {
     height: 100vh;
+  }
+  .h-\[\[20rem\]\] {
+    height: [20rem];
   }
   .h-\[rem\] {
     height: rem;
@@ -737,8 +767,23 @@
   .w-80 {
     width: calc(var(--spacing) * 80);
   }
+  .w-90 {
+    width: calc(var(--spacing) * 90);
+  }
+  .w-\[\%\] {
+    width: %;
+  }
+  .w-\[1\%\] {
+    width: 1%;
+  }
   .w-\[2\] {
     width: 2;
+  }
+  .w-\[5\%\] {
+    width: 5%;
+  }
+  .w-\[9\%\] {
+    width: 9%;
   }
   .w-\[9\] {
     width: 9;
@@ -767,6 +812,9 @@
   .w-\[45\.813rem\] {
     width: 45.813rem;
   }
+  .w-\[65\%\] {
+    width: 65%;
+  }
   .w-\[80rem\] {
     width: 80rem;
   }
@@ -779,6 +827,9 @@
   .w-\[90vw\] {
     width: 90vw;
   }
+  .w-\[91\%\] {
+    width: 91%;
+  }
   .w-\[92\%\] {
     width: 92%;
   }
@@ -790,6 +841,15 @@
   }
   .w-\[93vw\] {
     width: 93vw;
+  }
+  .w-\[94\%\] {
+    width: 94%;
+  }
+  .w-\[95\%\] {
+    width: 95%;
+  }
+  .w-\[100\%\] {
+    width: 100%;
   }
   .w-\[100vw\] {
     width: 100vw;
@@ -1079,6 +1139,9 @@
   .overflow-x-hidden {
     overflow-x: hidden;
   }
+  .overflow-x-scroll {
+    overflow-x: scroll;
+  }
   .overflow-y-hidden {
     overflow-y: hidden;
   }
@@ -1287,8 +1350,14 @@
   .pr-5 {
     padding-right: calc(var(--spacing) * 5);
   }
+  .pb-1 {
+    padding-bottom: calc(var(--spacing) * 1);
+  }
   .pb-2 {
     padding-bottom: calc(var(--spacing) * 2);
+  }
+  .pb-16 {
+    padding-bottom: calc(var(--spacing) * 16);
   }
   .pb-20 {
     padding-bottom: calc(var(--spacing) * 20);
@@ -1360,6 +1429,9 @@
   .text-\[0\.9rem\] {
     font-size: 0.9rem;
   }
+  .text-\[2\%\] {
+    font-size: 2%;
+  }
   .text-\[2\.5rem\] {
     font-size: 2.5rem;
   }
@@ -1378,11 +1450,20 @@
   .text-\[10\.5rem\] {
     font-size: 10.5rem;
   }
+  .text-\[12\%\] {
+    font-size: 12%;
+  }
   .text-\[13\.5rem\] {
     font-size: 13.5rem;
   }
   .text-\[17\.5rem\] {
     font-size: 17.5rem;
+  }
+  .text-\[24\%\] {
+    font-size: 24%;
+  }
+  .text-\[40\%\] {
+    font-size: 40%;
   }
   .leading-1 {
     --tw-leading: calc(var(--spacing) * 1);
@@ -1494,6 +1575,9 @@
   }
   .whitespace-nowrap {
     white-space: nowrap;
+  }
+  .text-\[12\] {
+    color: 12;
   }
   .text-\[rem\] {
     color: rem;
