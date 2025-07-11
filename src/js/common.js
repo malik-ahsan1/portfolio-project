@@ -1,4 +1,4 @@
-import { drawLine } from './index.js';
+// import { drawLine } from './index.js';
 
 // // Settings
 // const MIN_BLOBS = 8;
@@ -175,26 +175,20 @@ import { drawLine } from './index.js';
 const toggleBtn = document.getElementById('menu-toggle');
 const closeBtn = document.getElementById('menu-close');
 const navMenu = document.getElementById('nav-menu');
-const menuLinks = navMenu.querySelectorAll('.nav-menu-link');
+const menuLinks = navMenu.querySelectorAll('.nav-menu-link'); // or '.nav-menu-link a'
 const animatedLineNav = document.getElementById('animated-line-nav');
 const navBottomLinks = document.querySelector('.nav-bottom-links');
 
-// GSAP Timeline
-
 function animateMobileNav() {
-    // Make sure menu is displayed first
     navMenu.classList.remove('hidden');
-    navMenu.style.display = 'flex';
+    navMenu.style.display = 'flex'; // Optional if you're using Tailwind
 
-    const tl = gsap.timeline({
-        defaults: { ease: 'power2.out' },
-    });
+    const tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
 
     tl.to(navMenu, {
         opacity: 1,
         pointerEvents: 'auto',
         duration: 0.2,
-        ease: 'power2.out',
     });
 
     tl.from(
@@ -202,11 +196,9 @@ function animateMobileNav() {
         {
             y: 30,
             opacity: 0,
-            stagger: 0.05,
+            stagger: 0.06,
             duration: 0.25,
-            ease: 'power2.out',
         },
-        '-=0.2'
     );
 
     tl.from(
@@ -216,30 +208,24 @@ function animateMobileNav() {
             opacity: 0,
             duration: 0.5,
             stagger: 0.12,
-            ease: 'power2.out',
         },
         '-=0.2'
     );
 
-    drawLine(animatedLineNav, 0.5);
+    // drawLine(animatedLineNav, 0.5); // Optional
 }
 
-// Open menu
 toggleBtn.addEventListener('click', () => {
     navMenu.classList.remove('hidden');
-    // Disable body scroll when menu is open on mobile, but allow nav menu to scroll
     document.body.style.overflow = 'hidden';
     document.body.style.position = 'fixed';
     document.body.style.width = '100%';
-
-    // Ensure nav menu can scroll
     navMenu.style.overflow = 'auto';
-    navMenu.style.webkitOverflowScrolling = 'touch'; // Smooth scrolling on iOS
+    navMenu.style.webkitOverflowScrolling = 'touch';
 
     animateMobileNav();
 });
 
-// Close menu
 closeBtn.addEventListener('click', () => {
     gsap.to(navMenu, {
         opacity: 0,
@@ -247,14 +233,9 @@ closeBtn.addEventListener('click', () => {
         duration: 0.3,
         onComplete: () => {
             navMenu.classList.add('hidden');
-            navMenu.style.display = 'none';
-
-            // Re-enable body scroll when menu is closed
             document.body.style.overflow = '';
             document.body.style.position = '';
             document.body.style.width = '';
-
-            // Reset nav menu overflow
             navMenu.style.overflow = '';
             navMenu.style.webkitOverflowScrolling = '';
         },

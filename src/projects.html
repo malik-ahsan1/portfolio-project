@@ -5,10 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mobile Carousel with GSAP</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Draggable.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/InertiaPlugin.min.js"></script>
+    <link rel="stylesheet" href="./custom.css">
+    <link rel="stylesheet" href="./output.css">
+
     <style>
         .scrollbar-hide {
             -ms-overflow-style: none;
@@ -68,6 +67,77 @@
 </head>
 
 <body class="bg-black text-white min-h-screen">
+    <nav class="navbar--touch relative z-50 flex w-[92%] mx-auto items-center pt-1">
+        <!-- Logo (left) -->
+        <div class="logo text-[2.5rem] font-light">
+            <!-- Mobile: CK. -->
+            <h1 class="block">CK.</h1>
+        </div>
+
+        <!-- Hamburger (mobile only) -->
+        <div class="ml-auto">
+            <button id="menu-toggle" class="text-white text-3xl focus:outline-none">&#9776;</button>
+        </div>
+
+        <!-- Mobile Fullscreen Menu -->
+        <div id="nav-menu"
+            class="hidden fixed top-0 left-0 opacity-0 bg-black text-white flex-col items-center w-screen h-screen py-1 z-50 md:hidden">
+            <div class="w-[92%] h-full flex flex-col justify-between overflow-hidden">
+                <!-- Close button (optional) -->
+                <div class="w-full flex justify-between items-center">
+                    <div class="logo text-[2.5rem] font-light sm:text-[2.5rem] md:text-[3.2rem]">
+                        <h1>CK.</h1>
+                    </div>
+                    <button id="menu-close" class="text-white p-2">
+                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+                            <path stroke-width="2"
+                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" />
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Nav links (centered vertically) -->
+                <div class="flex flex-col items-center justify-center gap-16 font-light flex-1 py-16">
+                    <div class="overflow-hidden">
+                        <div class="nav-menu-link will-change-transform"><a href="./index.html"
+                                class="text-xl tracking-wide">HOME</a></div>
+                    </div>
+                    <div class="overflow-hidden px-6 py-2 border border-white/30 rounded-full">
+                        <div class="nav-menu-link will-change-transform"><a href="./projects.html"
+                                class="text-xl tracking-wide">PROJECTS</a>
+                        </div>
+                    </div>
+                    <div class="overflow-hidden px-8 py-2 border border-white/30 rounded-full">
+                        <div class="nav-menu-link will-change-transform"><a href="#"
+                                class="text-xl tracking-wide">ABOUT</a>
+                        </div>
+                    </div>
+                    <!-- Freelance button -->
+                    <div class="px-6 py-2 border border-white/30 rounded-full text-base overflow-hidden mt-8">
+                        <div class="nav-menu-link will-change-transform">
+                            <a href="#" class="tracking-wide">AVAILABLE FOR FREELANCE</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="nav-bottom-mobile w-full mb-4">
+                    <svg width="100%" height="1" xmlns="http://www.w3.org/2000/svg">
+                        <line id="animated-line-nav" x1="0" y1="0.5" x2="100%" y2="0.5" stroke="white"
+                            stroke-opacity="0.4" stroke-width="1" />
+                    </svg>
+
+                    <div class="nav-bottom-links flex items-center justify-between mt-4 text-base font-light mb-9">
+                        <span>IG</span>
+                        <span>EM</span>
+                        <span>TW</span>
+                        <span>IN</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </nav>
+
     <div class="relative h-[90vh] w-full overflow-hidden">
         <!-- Carousel container -->
         <div class="carousel-container h-full w-full relative" id="carousel-container">
@@ -170,291 +240,11 @@
         </div>
     </div>
 
-    <script>
-        class MobileCarousel {
-            constructor() {
-                this.currentIndex = 0;
-                this.totalSlides = 7;
-                this.isAnimating = false;
-                this.startX = 0;
-                this.currentX = 0;
-                this.threshold = 30; // Minimum distance to trigger slide change
-
-                this.track = document.getElementById('carousel-track');
-                this.container = document.getElementById('carousel-container');
-                this.bullets = document.querySelectorAll('.bullet');
-                this.slides = document.querySelectorAll('.carousel-slide');
-
-                this.init();
-            }
-
-            init() {
-                this.setupTrack();
-                this.setupEventListeners();
-                this.updateUI();
-                this.animateInitialLoad();
-            }
-
-            setupTrack() {
-                // Set initial position
-                gsap.set(this.track, { x: 0 });
-            }
-
-            setupEventListeners() {
-                // Bullet navigation
-                this.bullets.forEach((bullet, index) => {
-                    bullet.addEventListener('click', () => {
-                        if (!this.isAnimating) {
-                            this.goToSlide(index);
-                        }
-                    });
-                });
-
-                // Touch events
-                this.container.addEventListener('touchstart', (e) => {
-                    if (this.isAnimating) return;
-                    this.startX = e.touches[0].clientX;
-                    this.startY = e.touches[0].clientY; // Track Y to distinguish horizontal vs vertical
-                    this.currentX = this.startX;
-                }, { passive: true });
-
-                this.container.addEventListener('touchmove', (e) => {
-                    if (this.isAnimating) return;
-
-                    this.currentX = e.touches[0].clientX;
-                    const currentY = e.touches[0].clientY;
-
-                    // Calculate deltas
-                    const deltaX = this.currentX - this.startX;
-                    const deltaY = currentY - this.startY;
-
-                    // If horizontal movement is greater than vertical, prevent default browser behavior
-                    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 10) {
-                        e.preventDefault(); // This prevents browser back navigation
-                    }
-                }, { passive: false }); // Must be false to allow preventDefault
-
-                this.container.addEventListener('touchend', (e) => {
-                    if (this.isAnimating) return;
-
-                    const deltaX = this.currentX - this.startX;
-
-                    // Only trigger if moved enough
-                    if (Math.abs(deltaX) > this.threshold) {
-                        if (deltaX > 0) {
-                            // Swiped right - go to previous slide
-                            this.goToPreviousSlide();
-                        } else {
-                            // Swiped left - go to next slide
-                            this.goToNextSlide();
-                        }
-                    }
-                }, { passive: true });
-
-                // Mouse events for desktop testing
-                this.container.addEventListener('mousedown', (e) => {
-                    if (this.isAnimating) return;
-                    this.startX = e.clientX;
-                    this.currentX = this.startX;
-                    this.isMouseDown = true;
-                    e.preventDefault(); // Prevent text selection
-                });
-
-                this.container.addEventListener('mousemove', (e) => {
-                    if (this.isAnimating || !this.isMouseDown) return;
-                    this.currentX = e.clientX;
-                    e.preventDefault();
-                });
-
-                this.container.addEventListener('mouseup', (e) => {
-                    if (this.isAnimating || !this.isMouseDown) return;
-                    this.isMouseDown = false;
-
-                    const deltaX = this.currentX - this.startX;
-
-                    if (Math.abs(deltaX) > this.threshold) {
-                        if (deltaX > 0) {
-                            this.goToPreviousSlide();
-                        } else {
-                            this.goToNextSlide();
-                        }
-                    }
-                });
-
-                // Prevent context menu and other gestures
-                this.container.addEventListener('contextmenu', (e) => {
-                    e.preventDefault();
-                });
-
-                // Prevent browser pull-to-refresh and other gestures
-                this.container.addEventListener('gesturestart', (e) => {
-                    e.preventDefault();
-                });
-
-                this.container.addEventListener('gesturechange', (e) => {
-                    e.preventDefault();
-                });
-
-                this.container.addEventListener('gestureend', (e) => {
-                    e.preventDefault();
-                });
-            }
-
-            goToNextSlide() {
-                if (this.currentIndex < this.totalSlides - 1) {
-                    this.goToSlide(this.currentIndex + 1);
-                }
-            }
-
-            goToPreviousSlide() {
-                if (this.currentIndex > 0) {
-                    this.goToSlide(this.currentIndex - 1);
-                }
-            }
-
-            goToSlide(index) {
-                if (this.isAnimating || index === this.currentIndex || index < 0 || index >= this.totalSlides) {
-                    return;
-                }
-
-                this.isAnimating = true;
-                this.currentIndex = index;
-
-                const targetX = -index * window.innerWidth;
-
-                gsap.to(this.track, {
-                    x: targetX,
-                    duration: 0.5,
-                    ease: "power2.out",
-                    onComplete: () => {
-                        this.isAnimating = false;
-                        this.animateSlideContent();
-                    }
-                });
-
-                this.updateUI();
-            }
-
-            updateUI() {
-                // Update bullets
-                this.bullets.forEach((bullet, index) => {
-                    bullet.classList.toggle('active', index === this.currentIndex);
-                });
-
-                // Animate bullets
-                gsap.to(this.bullets[this.currentIndex], {
-                    scale: 1.2,
-                    duration: 0.3,
-                    ease: "power2.out"
-                });
-
-                this.bullets.forEach((bullet, index) => {
-                    if (index !== this.currentIndex) {
-                        gsap.to(bullet, {
-                            scale: 1,
-                            duration: 0.3,
-                            ease: "power2.out"
-                        });
-                    }
-                });
-            }
-
-            animateSlideContent() {
-                const currentSlide = this.slides[this.currentIndex];
-                const projectImage = currentSlide.querySelector('.project-image');
-                const projectInfo = currentSlide.querySelector('.project-info');
-
-                // Reset all other slides
-                this.slides.forEach((slide, index) => {
-                    if (index !== this.currentIndex) {
-                        const img = slide.querySelector('.project-image');
-                        const info = slide.querySelector('.project-info');
-
-                        gsap.set(img, { scale: 1.05, opacity: 0.7 });
-                        gsap.set(info, { y: 30, opacity: 0 });
-                    }
-                });
-
-                // Animate current slide
-                gsap.to(projectImage, {
-                    scale: 1,
-                    opacity: 1,
-                    duration: 0.6,
-                    ease: "power2.out"
-                });
-
-                gsap.to(projectInfo, {
-                    y: 0,
-                    opacity: 1,
-                    duration: 0.5,
-                    delay: 0.1,
-                    ease: "power2.out"
-                });
-            }
-
-            animateInitialLoad() {
-                // Animate first slide on load
-                gsap.fromTo(this.slides[0].querySelector('.project-image'),
-                    {
-                        scale: 1.2,
-                        opacity: 0
-                    },
-                    {
-                        scale: 1,
-                        opacity: 1,
-                        duration: 1,
-                        ease: "power2.out"
-                    }
-                );
-
-                gsap.fromTo(this.slides[0].querySelector('.project-info'),
-                    {
-                        y: 50,
-                        opacity: 0
-                    },
-                    {
-                        y: 0,
-                        opacity: 1,
-                        duration: 0.8,
-                        delay: 0.3,
-                        ease: "power2.out"
-                    }
-                );
-
-                // Animate bullets
-                gsap.fromTo(this.bullets,
-                    {
-                        scale: 0,
-                        opacity: 0
-                    },
-                    {
-                        scale: 1,
-                        opacity: 1,
-                        duration: 0.5,
-                        delay: 0.5,
-                        stagger: 0.1,
-                        ease: "back.out(1.7)"
-                    }
-                );
-
-                 // Reset all other slides
-                this.slides.forEach((slide, index) => {
-                    if (index !== this.currentIndex) {
-                        const img = slide.querySelector('.project-image');
-                        const info = slide.querySelector('.project-info');
-
-                        gsap.set(img, { scale: 1.05, opacity: 0.7 });
-                        gsap.set(info, { y: 30, opacity: 0 });
-                    }
-                });
-            }
-        }
-
-        // Initialize carousel when DOM is loaded
-        document.addEventListener('DOMContentLoaded', () => {
-            new MobileCarousel();
-        });
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Draggable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/InertiaPlugin.min.js"></script>
+    <script type="module" src="./main.js"></script>
+    <script src="./project-mobile.js"></script>
 </body>
 
 </html>
