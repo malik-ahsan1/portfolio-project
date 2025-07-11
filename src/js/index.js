@@ -5,13 +5,17 @@ const isMobile =
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
-let smoother = ScrollSmoother.create({
-    wrapper: '#smooth-wrapper',
-    content: '#smooth-content',
-    smooth: 1.5, // higher = more lag/smoothness
-    normalizeScroll: true, // ensures consistent momentum feel
-    ignoreMobileResize: true, // prevents jumpy behavior on mobile
-});
+let smoother = null;
+
+if (!isMobile) {
+    smoother = ScrollSmoother.create({
+        wrapper: '#smooth-wrapper',
+        content: '#smooth-content',
+        smooth: 1.5, // higher = more lag/smoothness
+        normalizeScroll: true, // ensures consistent momentum feel
+        ignoreMobileResize: true, // prevents jumpy behavior on mobile
+    });
+}
 
 // =============================================================================
 // PARAGRAPH ANIMATION
