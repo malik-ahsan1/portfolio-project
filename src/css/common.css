@@ -26,20 +26,19 @@ body {
     /* Allow vertical scrolling */
     height: 100%;
     width: 100%;
+    /* Hide scrollbar for webkit browsers (Chrome, Safari, Edge) */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
-
-/* Optional: Hide scrollbar */
-#carousel-wrapper::-webkit-scrollbar {
+body::-webkit-scrollbar,
+html::-webkit-scrollbar {
     display: none;
 }
 
-#carousel-wrapper {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-    max-width: 100vw;
-    overflow-x: auto;
-    overflow-y: hidden;
+/* Ensure smooth scrolling is maintained */
+html {
+    scroll-behavior: smooth;
 }
 
 .project-bullet {
@@ -88,42 +87,22 @@ body {
     transition: all 0.3s ease;
 }
 
-/* Fix text strips to prevent overflow */
-.home-multi-strip,
-.home-disc-strip,
-.home-creative-strip,
-.moving-strip {
-    max-width: 100vw;
+#background-wrapper {
+    will-change: transform;
+    contain: layout paint;
+}
+
+#smooth-wrapper {
+    height: 100vh;
     overflow: hidden;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    will-change: transform;
+    contain: layout paint;
 }
 
-/* Fix moving strips spacing - prevent spans from getting closer on smaller screens */
-.home-multi-strip span,
-.home-disc-strip span,
-.home-creative-strip span,
-.moving-strip p {
-    flex-shrink: 0;
-    white-space: nowrap;
-    min-width: max-content;
-    display: inline-block;
-}
-
-/* Ensure consistent spacing for the hero title strips */
-.home-multi-c--touch,
-.home-disc-c--touch,
-.home-desig-c--touch {
-    flex-shrink: 0;
-    min-width: max-content;
-    white-space: nowrap;
-    margin-right: 0;
-    padding-right: 0;
-}
-
-/* Ensure the strips maintain their width */
-.home-multi-strip,
-.home-disc-strip,
-.home-creative-strip {
-    min-width: 200vw;
-    /* Make wider than viewport to ensure continuous text */
-    flex-shrink: 0;
+#smooth-content {
+    will-change: transform;
 }

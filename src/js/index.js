@@ -2,18 +2,109 @@ const isMobile =
     /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
         navigator.userAgent
     );
-
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
-let smoother = null;
-
 if (!isMobile) {
-    smoother = ScrollSmoother.create({
+    const mainWrapper = document.querySelector('.main-wrapper');
+    mainWrapper.setAttribute('id', 'smooth-wrapper');
+    document
+        .querySelector('.main-wrapper > div')
+        .setAttribute('id', 'smooth-content');
+    let smoother = ScrollSmoother.create({
         wrapper: '#smooth-wrapper',
         content: '#smooth-content',
-        smooth: 1.5, // higher = more lag/smoothness
-        normalizeScroll: true, // ensures consistent momentum feel
-        ignoreMobileResize: true, // prevents jumpy behavior on mobile
+        smooth: 2,
+        normalizeScroll: true, // optional: helps reduce inconsistencies
+        effects: true, // needed if you use [data-speed] parallax
+    });
+
+    const scrollerEl = smoother.scrollTrigger.scroller; // <html> by default
+    const maxScroll = ScrollTrigger.maxScroll(scrollerEl);
+
+    let lastScroll = 0;
+    let navbarIsHidden = false;
+
+    scrollerEl.addEventListener('scroll', () => {
+        const y = smoother.scrollTrigger.scroll();
+
+        /* direction ----------------------------------------------------------- */
+        if (y > lastScroll && !navbarIsHidden) {
+            // scrolling down
+            navbarIsHidden = true;
+            hideNavbar();
+        } else if (y < lastScroll && navbarIsHidden) {
+            // scrolling up
+            navbarIsHidden = false;
+            showNavbar();
+        }
+
+        /* bottom of page ------------------------------------------------------ */
+        if (y >= maxScroll - 1) {
+            showNavbar(1);
+        }
+
+        lastScroll = y;
+    });
+}
+
+if (isMobile) {
+    const scrollEl = document.body; // This is your scroll container
+
+    let lastY = scrollEl.scrollTop;
+    let navbarHidden = false;
+
+    scrollEl.addEventListener(
+        'scroll',
+        () => {
+            requestAnimationFrame(() => {
+                const currentY = scrollEl.scrollTop;
+
+                // Scroll direction
+                if (currentY > lastY + 4 && !navbarHidden) {
+                    navbarHidden = true;
+                    hideNavbar();
+                } else if (currentY < lastY - 4 && navbarHidden) {
+                    navbarHidden = false;
+                    showNavbar();
+                }
+
+                // Reached bottom of scroll container
+                const atBottom =
+                    currentY + scrollEl.clientHeight >=
+                    scrollEl.scrollHeight - 1;
+                if (atBottom) {
+                    navbarHidden = false;
+                    showNavbar();
+                }
+
+                lastY = currentY;
+            });
+        },
+        { passive: true }
+    );
+}
+
+// =============================================================================
+// NAVBAR ANIMATION
+// =============================================================================
+
+const navbar = document.querySelector('#main-nav');
+
+function hideNavbar(delay = 0) {
+    gsap.to(navbar, {
+        yPercent: -100,
+        duration: 1,
+        delay: delay,
+        ease: 'power2.out',
+    });
+}
+
+function showNavbar(delay = 0) {
+    gsap.to(navbar, {
+        yPercent: 0,
+        duration: 1,
+        delay: delay,
+        ease: 'power2.out',
     });
 }
 
@@ -68,48 +159,43 @@ function initializeMainCircle(mainCircle) {
     });
 }
 
+let arrowTween = null;
+
 // Animate main circle drawing
 function animateCircle(mainCircle, innerContent) {
     const tl = gsap.timeline({
         scrollTrigger: {
             trigger: mainCircle[0], // element that triggers scroll
-            start: 'top 85%', // trigger when top of element hits 80% of viewport
+            start: 'top 80%', // trigger when top of element hits 80% of viewport
         },
-    });
-
-    // Reset circle to invisible state
-    mainCircle.forEach((circle) => {
-        tl.set(circle, {
-            strokeDashoffset: circumference,
-        });
     });
 
     // Animate the circle drawing and rotation
     mainCircle.forEach((circle) => {
-        tl.to(
-            circle,
-            {
-                rotate: 360,
-                strokeDashoffset: 0,
-                opacity: 2,
-                duration: 2.2,
-                ease: 'expo.out',
+        gsap.to(circle, {
+            rotate: 360,
+            strokeDashoffset: 0,
+            opacity: 2,
+            duration: 2.2,
+            ease: 'expo.out',
+            scrollTrigger: {
+                trigger: mainCircle[0], // element that triggers scroll
+                start: 'top 80%', // trigger when top of element hits 80% of viewport
             },
-            '<'
-        );
+        });
     });
 
     // Animate arrow appearance
-    tl.to(
-        innerContent,
-        {
-            opacity: 1,
-            y: 0,
-            duration: 0.5,
-            ease: 'power2.out',
+    arrowTween = gsap.to(innerContent, {
+        opacity: 1,
+        y: 0,
+        duration: 0.5,
+        ease: 'power2.out',
+        scrollTrigger: {
+            trigger: mainCircle[0], // element that triggers scroll
+            start: 'top 80%', // trigger when top of element hits 80% of viewport
         },
-        '<'
-    );
+    });
 
     return tl;
 }
@@ -151,6 +237,7 @@ function initializeCircle(
     // Mouse move event
     detectionArea.addEventListener('mousemove', (e) => {
         if (!isHovering) return;
+        if (arrowTween) arrowTween.kill();
 
         // Get container bounds
         const rect = detectionArea.getBoundingClientRect();
@@ -457,7 +544,7 @@ function mouseleaveIntroCircle() {
     });
 }
 
-// DOM elements for hero circle
+// DOM elements for projects circle
 const detectionAreaProjects = document.getElementById('circle-area-projects');
 const topCircleProjects = document.querySelector(
     '.circle-area-projects__top-circle'
@@ -496,6 +583,45 @@ function mouseleaveProjectsCircle() {
     });
 }
 
+// Dom elements for message me cricle
+const detectionAreaMessage = document.getElementById('circle-area-message-me');
+const topCircleMessage = document.querySelector(
+    '.circle-area-message-me__top-circle'
+);
+const bottomCircleMessage = document.querySelector(
+    '.circle-area-message-me__bottom-circle'
+);
+const mainCircleMessage = Array.from(
+    document.querySelectorAll('.mainCircle-message-me')
+);
+let innerContentMessage = document.querySelector('.view-all-message-me__text');
+
+function mouseenterMessageCircle() {
+    isHovering = true;
+
+    innerContentMessage.style.opacity = '0';
+    innerContentMessage = document.querySelector(
+        '.circle-area-message-me__arrow'
+    );
+    innerContentMessage.style.opacity = '1';
+}
+
+function mouseleaveMessageCircle() {
+    isHovering = false;
+
+    innerContentMessage.style.opacity = '0';
+    innerContentMessage = document.querySelector('.view-all-message-me__text');
+    innerContentMessage.style.opacity = '1';
+
+    // Return to resting position (center)
+    gsap.to([topCircleMessage, bottomCircleMessage, innerContentMessage], {
+        x: 0,
+        y: 0,
+        duration: 1.5,
+        ease: 'expo.out',
+    });
+}
+
 // =============================================================================
 // DOM ELEMENTS FOR LINE ANIMATION
 // =============================================================================
@@ -523,19 +649,21 @@ const desigMovingStrip = document.querySelectorAll('.home-desig-c--touch');
 
 // Initialize all functionality when page loads
 window.addEventListener('load', () => {
-    initializeParagraphAnimation(heroPara);
-    initializeCircle(
-        detectionAreaHero,
-        topCircleHero,
-        bottomCircleHero,
-        () => innerContentHero,
-        onClickHeroCircle,
-        mouseenterHeroCircle,
-        mouseleaveHeroCircle
-    );
-    initializeMainCircle(mainCircleHero);
+    ScrollTrigger.refresh();
 
     if (!isMobile) {
+        initializeParagraphAnimation(heroPara);
+        initializeCircle(
+            detectionAreaHero,
+            topCircleHero,
+            bottomCircleHero,
+            () => innerContentHero,
+            onClickHeroCircle,
+            mouseenterHeroCircle,
+            mouseleaveHeroCircle
+        );
+        initializeMainCircle(mainCircleHero, () => innerContentHero);
+
         initializeLine(animatedLineIntro);
         drawLine(animatedLineIntro);
 
@@ -544,19 +672,23 @@ window.addEventListener('load', () => {
 
         initializeParagraphAnimation(introPara);
         animateParagraph(introPara);
+
+        initializeCircle(
+            detectionAreaIntro,
+            topCircleIntro,
+            bottomCircleIntro,
+            () => innerContentIntro,
+            () => {},
+            mouseenterIntroCircle,
+            mouseleaveIntroCircle
+        );
+        initializeMainCircle(mainCircleIntro, () => innerContentIntro);
+        animateCircle(mainCircleIntro, innerContentIntro);
     }
 
-    initializeCircle(
-        detectionAreaIntro,
-        topCircleIntro,
-        bottomCircleIntro,
-        () => innerContentIntro,
-        () => {},
-        mouseenterIntroCircle,
-        mouseleaveIntroCircle
-    );
-    initializeMainCircle(mainCircleIntro);
-    animateCircle(mainCircleIntro, innerContentIntro);
+    if (isMobile) {
+        document.querySelector('.stripWrap--touch').classList.add('bottom-64');
+    }
 
     createLiquidHorizontalScroll(nameMovingStrip, 7, 'left');
     createLiquidHorizontalScroll(multiMovingStrip, 8);
@@ -572,21 +704,19 @@ window.addEventListener('load', () => {
 
         initializeParagraphAnimation(projectsPara);
         animateParagraph(projectsPara, 0.4, 0, 0.13);
-    }
 
-    initializeCircle(
-        detectionAreaProjects,
-        topCircleProjects,
-        bottomCircleProjects,
-        () => innerContentProjects,
-        () => {},
-        mouseenterProjectsCircle,
-        mouseleaveProjectsCircle
-    );
-    initializeMainCircle(mainCircleProjects);
-    animateCircle(mainCircleProjects, innerContentProjects);
+        initializeCircle(
+            detectionAreaProjects,
+            topCircleProjects,
+            bottomCircleProjects,
+            () => innerContentProjects,
+            () => {},
+            mouseenterProjectsCircle,
+            mouseleaveProjectsCircle
+        );
+        initializeMainCircle(mainCircleProjects, () => innerContentProjects);
+        animateCircle(mainCircleProjects, innerContentProjects);
 
-    if (!isMobile) {
         initializeProjectHover();
 
         initializeLine(animatedLineCapabilities);
@@ -594,11 +724,25 @@ window.addEventListener('load', () => {
 
         initializeHeader(capabilitiesHeader);
         animateHeader(capabilitiesHeader);
+
+        initializeCircle(
+            detectionAreaMessage,
+            topCircleMessage,
+            bottomCircleMessage,
+            () => innerContentMessage,
+            () => {},
+            mouseenterMessageCircle,
+            mouseleaveMessageCircle
+        );
+        initializeMainCircle(mainCircleMessage, () => innerContentMessage);
+        animateCircle(mainCircleMessage, innerContentMessage);
     }
 
-    // Start main circle animation after delay
+    // // Start main circle animation after delay
     setTimeout(() => {
-        animateParagraph(heroPara);
-        animateCircle(mainCircleHero, innerContentHero);
+        if (!isMobile) {
+            animateParagraph(heroPara, 0.4, 0, 0.1);
+            animateCircle(mainCircleHero, innerContentHero);
+        }
     }, 200);
 });
