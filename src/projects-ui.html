@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carosal</title>
+    <link rel="stylesheet" href="./css/output.css">
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./css/projects-ui.css">
+</head>
+
+<body class="overflow-hidden bg-black text-white">
+    <section class="projects h-screen w-screen">
+        <div class="w-[95%] h-full mx-auto">
+            <div class="parent w-full h-[83vh] mt-32">
+                <div class="div1 image-map">
+                    <div class="images-container flex flex-col gap-4 items-start">
+                        <div class="image-mask overflow-hidden h-[94px] w-[74px] p-[2px] bg-gray-700 rounded-none">
+                            <div class="image-inner relative h-full w-full border-[4px] border-black">
+                                <div
+                                    class="image absolute inset-0 bg-[url('https://valentincheval.design/_astro/bitmex-cover.DpIAWMTO_1rVh1Q.webp')] bg-cover bg-center blur-[0.8px]">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="image-mask overflow-hidden h-[0px] w-[74px] p-[2px] bg-gray-700 rounded-full">
+                            <div class="image-inner relative h-full w-full border-[0px] border-black">
+                                <div
+                                    class="image absolute inset-0 bg-[url('https://valentincheval.design/_astro/define-hero.D97LaZGw_ZaAv2R.webp')] bg-cover bg-center blur-[0.8px]">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="image-mask overflow-hidden  h-[0px] w-[74px] p-[2px] bg-gray-700 rounded-full">
+                            <div class="image-inner relative h-full w-full border-[0px] border-black">
+                                <div
+                                    class="image absolute inset-0 bg-[url('https://valentincheval.design/_astro/gotymebank.D2jICiWb_Z8ICOc.webp')] bg-cover bg-center blur-[0.8px]">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="div2 titles">
+                    <div class="flex flex-col items-start h-full gap-5">
+                        <div
+                            class="counter flex items-center border-b border-gray-600 pb-4 tracking-tight text-lg font-semibold">
+                            <div>0</div>
+                            <div class="rotating-numbers grid overflow-hidden">
+                                <span style="grid-area: 1/1/2/2;">1</span>
+                                <span class="translate-y-[100%] opacity-0" style="grid-area: 1/1/2/2;">2</span>
+                                <span class="translate-y-[100%] opacity-0" style="grid-area: 1/1/2/2;">3</span>
+                            </div>
+                            <div class="text-gray-700">&nbsp;/ 03</div>
+                        </div>
+                        <div class="names text-[5rem] font-extrabold leading-none text-nowrap ">
+                            <div class="rotating-names grid overflow-hidden">
+                                <span style="grid-area: 1/1/2/2;">BITMEX</span>
+                                <span class="translate-y-[100%] opacity-0" style="grid-area: 1/1/2/2;">DEFICHAIN</span>
+                                <span class="translate-y-[100%] opacity-0" style="grid-area: 1/1/2/2;">TYME BANK</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="div3 images relative">
+                    <div id="card-1" class="card h-full w-full absolute top-0 left-0"
+                        style="clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);">
+                        <div class="img-wrapper h-full w-full" style="transform-origin: 25% 25%; transform: scale(1);">
+                            <img class="h-full object-cover object-center"
+                                src="https://valentincheval.design/_astro/bitmex-cover.DpIAWMTO_1rVh1Q.webp" alt="">
+                        </div>
+                    </div>
+                    <div id="card-2" class="card h-full w-full absolute top-0 left-0"
+                        style="clip-path: polygon(100% 100%, 100% 100%, 100% 100%, 100% 100%);">
+                        <div class="img-wrapper h-full w-full"
+                            style="transform-origin: 25% 25%; transform: scale(1.4);">
+                            <img class="h-full object-cover object-center translate-x-1/2 translate-y-1/2"
+                                src="https://valentincheval.design/_astro/define-hero.D97LaZGw_ZaAv2R.webp" alt="">
+                        </div>
+                    </div>
+                    <div id="card-3" class="card h-full w-full absolute top-0 left-0 origin-[25% 25%]"
+                        style="clip-path: polygon(100% 100%, 100% 100%, 100% 100%, 100% 100%);">
+                        <div class="img-wrapper h-full w-full"
+                            style="transform-origin: 25% 25%; transform: scale(1.4);">
+                            <img class="h-full object-cover object-center translate-x-1/2 translate-y-1/2"
+                                src="https://valentincheval.design/_astro/gotymebank.D2jICiWb_Z8ICOc.webp" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="div4 flex flex-col items-start gap-28">
+                    <div class="year text-lg flex flex-col gap-1">
+                        <span class="text-gray-600">Year</span>
+                        <div class="rotating-years grid overflow-hidden text-3xl font-bold">
+                            <span style="grid-area: 1/1/2/2;">2020</span>
+                            <span class="translate-y-[100%] opacity-0" style="grid-area: 1/1/2/2;">2023</span>
+                            <span class="translate-y-[100%] opacity-0" style="grid-area: 1/1/2/2;">2021</span>
+                        </div>
+                    </div>
+                    <div class="role text-lg flex flex-col gap-1">
+                        <span class="text-gray-600">Role</span>
+                        <div class="rotating-roles grid overflow-hidden text-2xl font-bold text-gray-400">
+                            <span style="grid-area: 1/1/2/2;">Head of Design & Brand</span>
+                            <span class="translate-y-[100%] opacity-0" style="grid-area: 1/1/2/2;">Lead Product
+                                Designer</span>
+                            <span class="translate-y-[100%] opacity-0" style="grid-area: 1/1/2/2;">Lead Product
+                                Designer</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="div5 descriptions flex flex-col items-start gap-36 text-lg">
+                    <div class="flex flex-col gap-1">
+                        <span class="text-gray-600">Description</span>
+                        <div class="rotating-descriptions relative font-bold text-xl text-gray-400">
+                            <span class="desc-block">
+                                <p>BitMEX is a cryptocurrency exchange and derivative trading
+                                    platform. I led the design team to enhance user experience and interface, focusing
+                                    on
+                                    security and usability.</p>
+                            </span>
+                            <span class="desc-block">
+                                <p>DefiChain is a blockchain platform for decentralized finance
+                                    applications. My role involved designing intuitive interfaces for complex financial
+                                    products.</p>
+                            </span>
+                            <span class="desc-block">
+                                <p>Tyme Bank is a digital bank in South Africa. I contributed to
+                                    the
+                                    design of their mobile banking app, ensuring a seamless user experience.</p>
+                            </span>
+                        </div>
+                    </div>
+                    <a class="text-xl text-orange-700 underline" href="">All projects</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="./js/gsap/gsap.min.js"></script>
+    <script src="./js/gsap/Observer.min.js"></script>
+    <script src="./js/gsap/SplitText.min.js"></script>
+    <script src="./js/new-project.js"></script>
+</body>
+
+</html>

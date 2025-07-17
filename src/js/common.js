@@ -1,5 +1,3 @@
-import { drawLine } from './index.js';
-
 // Settings
 const MIN_BLOBS = 8;
 const MAX_BLOBS = 14;
@@ -182,7 +180,7 @@ function animateMobileNav() {
         '-=0.2'
     );
 
-    drawLine(animatedLineNav, 0.5); // Optional
+    // drawLine(animatedLineNav, 0.5); // Optional
 }
 
 toggleBtn.addEventListener('click', () => {
