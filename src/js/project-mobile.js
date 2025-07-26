@@ -209,13 +209,13 @@ class MobileCarousel {
     animateSlideContent() {
         const currentSlide = this.slides[this.currentIndex];
         const projectImage = currentSlide.querySelector('.project-image');
-        const projectInfo = currentSlide.querySelector('.project-info');
+        const projectInfo = currentSlide.querySelector('.project-info--mobile');
 
         // Reset all other slides
         this.slides.forEach((slide, index) => {
             if (index !== this.currentIndex) {
                 const img = slide.querySelector('.project-image');
-                const info = slide.querySelector('.project-info');
+                const info = slide.querySelector('.project-info--mobile');
 
                 gsap.set(img, { scale: 1.05, opacity: 0.7 });
                 gsap.set(info, { y: 30, opacity: 0 });
@@ -256,7 +256,7 @@ class MobileCarousel {
         );
 
         gsap.fromTo(
-            this.slides[0].querySelector('.project-info'),
+            this.slides[0].querySelector('.project-info--mobile'),
             {
                 y: 50,
                 opacity: 0,
@@ -291,7 +291,7 @@ class MobileCarousel {
         this.slides.forEach((slide, index) => {
             if (index !== this.currentIndex) {
                 const img = slide.querySelector('.project-image');
-                const info = slide.querySelector('.project-info');
+                const info = slide.querySelector('.project-info--mobile');
 
                 gsap.set(img, { scale: 1.05, opacity: 0.7 });
                 gsap.set(info, { y: 30, opacity: 0 });

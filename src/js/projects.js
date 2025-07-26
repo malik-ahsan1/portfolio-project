@@ -1,59 +1,11 @@
 gsap.registerPlugin(Observer);
 
-// const bullterContainer = document.querySelector('.bullets-container');
+const bullterContainer = document.querySelector('.bullets-container');
 const bullets = Array.from(document.querySelectorAll('.project-bullet'));
 
-// let activeBullet = document.querySelector('.project-bullet.active');
-// let hoveredInSession = false;
-
-// Track bullet hover
-// bullets.forEach((bullet) => {
-//     bullet.addEventListener('mouseenter', () => {
-//         activeBullet.classList.remove('active');
-//         bullet.classList.add('active');
-//         activeBullet = bullet;
-//         hoveredInSession = true;
-//     });
-// });
-
-// bullterContainer.addEventListener('mouseenter', () => {
-//     hoveredInSession = false;
-
-//     gsap.to(bullets, {
-//         scaleX: 3,
-//         scaleY: 2.7,
-//         y: (i) => i * 9,
-//         duration: 0.6,
-//         ease: 'power2.out',
-//     });
-// });
-
-// bullterContainer.addEventListener('mouseleave', () => {
-//     // Reset all bullets to normal
-//     bullets.forEach((bullet) => {
-//         gsap.to(bullet, {
-//             scaleX: 1,
-//             scaleY: 1,
-//             y: 0,
-//             duration: 0.6,
-//             ease: 'power2.out',
-//         });
-
-//         bullet.classList.remove('active');
-//     });
-
-//     // Re-apply active state and scale to the last hovered bullet (or original)
-//     if (activeBullet) {
-//         activeBullet.classList.add('active');
-
-//         gsap.to(activeBullet, {
-//             scaleX: 1.4,
-//             scaleY: 1,
-//             duration: 0.6,
-//             ease: 'power2.out',
-//         });
-//     }
-// });
+let activeBullet = document.querySelector('.project-bullet.active');
+let hoveredInSession = false;
+// ==========================================================================
 
 let isTransitioning = false;
 
@@ -79,6 +31,104 @@ let prevIndex =
     (currentIndex - 1 + counter_spans.length) % counter_spans.length;
 let progress = 0;
 let isAnimating = false;
+
+// Track bullet hover
+bullets.forEach((bullet, index) => {
+    bullet.addEventListener('mouseenter', () => {
+        if (index < currentIndex) {
+            const tl = gsap.timeline();
+
+            for (let i = currentIndex; i > index; i--) {
+                tl.to(bullets[i], {
+                    delay: 0.07,
+                    backgroundColor: 'rgba(255, 255, 255, 0.4)',
+                    duration: 0.05,
+                });
+
+                tl.set(bullets[i - 1], {
+                    backgroundColor: 'rgba(255, 255, 255, 1)',
+                });
+
+                gsap.to(img_divs[i], {
+                    yPercent: 105,
+                    duration: 0.3,
+                    ease: 'power2.out',
+                });
+
+                gsap.to(img_divs[(i + 1) % img_divs.length], {
+                    yPercent: 130,
+                    duration: 0.3,
+                    ease: 'power2.out',
+                });
+
+                gsap.to(img_divs[(i - 1 + img_divs.length) % img_divs.length], {
+                    yPercent: 0,
+                    duration: 0.3,
+                    ease: 'power2.out',
+                });
+
+                gsap.to(img_divs[(i - 2 + img_divs.length) % img_divs.length], {
+                    yPercent: -105,
+                    duration: 0.3,
+                    ease: 'power2.out',
+                });
+
+                currentIndex = index;
+                nextIndex = (currentIndex + 1) % counter_spans.length;
+                prevIndex =
+                    (currentIndex - 1 + counter_spans.length) %
+                    counter_spans.length;
+            }
+        }
+    });
+});
+
+bullterContainer.addEventListener('mouseenter', () => {
+    gsap.to(bullets, {
+        scaleX: 3,
+        scaleY: 2.7,
+        y: (i) => i * 9,
+        duration: 0.6,
+        ease: 'power2.out',
+    });
+
+    gsap.to(img_divs[prevIndex], {
+        yPercent: -105,
+        duration: 0.3,
+        ease: 'power2.out',
+    });
+
+    gsap.to(img_divs[nextIndex], {
+        yPercent: 105,
+        duration: 0.3,
+        ease: 'power2.out',
+    });
+});
+
+bullterContainer.addEventListener('mouseleave', () => {
+    // Reset all bullets to normal
+    bullets.forEach((bullet, index) => {
+        gsap.to(bullet, {
+            scaleX: index === currentIndex ? 1.4 : 1,
+            scaleY: 1,
+            y: 0,
+            duration: 0.6,
+            ease: 'power2.out',
+        });
+    });
+
+    gsap.to(img_divs[prevIndex], {
+        yPercent: -130,
+        duration: 0.3,
+        ease: 'power2.out',
+    });
+
+    gsap.to(img_divs[nextIndex], {
+        yPercent: 130,
+        duration: 0.3,
+        ease: 'power2.out',
+    });
+});
 
 // Initialize positions
 function initializePositions() {
@@ -235,6 +285,18 @@ function onWheelDown() {
         '<'
     );
 
+    tl.to(
+        bullets[currentIndex],
+        {
+            scaleX: 1,
+            scaleY: 1,
+            backgroundColor: 'rgba(255, 255, 255, 0.4)',
+            duration: 1.6,
+            ease: 'power2.out',
+        },
+        '<'
+    );
+
     // Moving next content in
     tl.to(
         counter_spans[nextIndex],
@@ -264,6 +326,18 @@ function onWheelDown() {
             yPercent: 0,
             opacity: 1,
             duration: 2.6,
+            ease: 'power2.out',
+        },
+        '<'
+    );
+
+    tl.to(
+        bullets[nextIndex],
+        {
+            scaleX: 1.4,
+            scaleY: 1,
+            backgroundColor: 'rgba(255, 255, 255, 1)',
+            duration: 1.6,
             ease: 'power2.out',
         },
         '<'
@@ -383,6 +457,18 @@ function onWheelUp() {
         '<'
     );
 
+    tl.to(
+        bullets[currentIndex],
+        {
+            scaleX: 1,
+            scaleY: 1,
+            backgroundColor: 'rgba(255, 255, 255, 0.4)',
+            duration: 1.6,
+            ease: 'power2.out',
+        },
+        '<'
+    );
+
     // Moving next content in
     tl.to(
         counter_spans[prevIndex],
@@ -412,6 +498,18 @@ function onWheelUp() {
             yPercent: 0,
             opacity: 1,
             duration: 2.6,
+            ease: 'power2.out',
+        },
+        '<'
+    );
+
+    tl.to(
+        bullets[prevIndex],
+        {
+            scaleX: 1.4,
+            scaleY: 1,
+            backgroundColor: 'rgba(255, 255, 255, 1)',
+            duration: 1.6,
             ease: 'power2.out',
         },
         '<'

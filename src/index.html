@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="./css/output.css">
 </head>
 
-<body class="text-white bg-black overflow-x-hidden relative">
+<body class="text-white bg-black relative">
 
     <div id="background-wrapper" class="fixed inset-0 z-0 pointer-events-none">
         <canvas id="liquid-bg" class="absolute inset-0"></canvas>
@@ -112,7 +112,6 @@
 
     <div class="main-wrapper relative z-30">
         <div>
-
             <main class="w-[92%] mx-auto md:w-[93%]">
                 <section class="hero-section min-h-screen md:relative md:w-full">
                     <!-- Scroll Indicator -->
@@ -417,7 +416,7 @@
                     <div
                         class="projects-header flex justify-between items-center text-[0.7rem] md:text-lg mt-4 mb-8 md:mt-2.5 md:mb-5">
                         <span>03/</span>
-                        <span class="mr-40 md:mr-[31rem]">PROJECTS</span>
+                        <span class="mr-40 md:ml-[-21rem]">PROJECTS</span>
                         <span>/04</span>
                     </div>
 
@@ -624,24 +623,33 @@
                     </div>
                 </section>
 
-                <section class="capabilities-section mt-32 w-[96%] mx-auto md:mt-56 md:mx-0 md:w-full">
+                <section class="projects-timeline-section mt-32 w-[96%] mx-auto md:mt-56 md:mx-0 md:w-full">
                     <svg width="100%" height="1" xmlns="http://www.w3.org/2000/svg">
-                        <line id="animated-line-capabilities" x1="0" y1="0.5" x2="100%" y2="0.5" stroke="white"
+                        <line id="animated-line-projects-timeline" x1="0" y1="0.5" x2="100%" y2="0.5" stroke="white"
                             stroke-width="1" />
                     </svg>
 
                     <div
-                        class="capabilities-header flex justify-between items-center text-[0.7rem] mt-4 mb-14 md:text-lg md:mt-2.5 md:mb-5">
+                        class="projects-timeline-header flex justify-between items-center text-[0.7rem] mt-4 mb-14 md:text-lg md:mt-2.5 md:mb-5">
                         <span>04/</span>
-                        <span class="mr-30 md:mr-[29rem]">CAPABILITIES</span>
+                        <span class="mr-30 md:ml-[-20rem]">Projects Timeline</span>
                         <span>/04</span>
+                    </div>
+
+                    <div class="projects-timeline mt-36">
+                        <div class="hidden h-16"></div>
+                        <div
+                            class="projects-timeline-container text-gray-500 text-2xl font-bold flex translate-x-[18%]">
+                            <!-- Data will be inserted dynamically -->
+                        </div>
+                        <div class="horizontal-ruler h-[2px] w-screen bg-gray-800"></div>
                     </div>
                 </section>
 
-                <section class="message-me mt-80 mb-44 md:mb-11 w-full mx-auto">
-                    <div class="message-container flex flex-col items-center mt-96 text-center">
+                <section class="message-me-section mt-96 mb-44 md:mb-11 w-full mx-auto">
+                    <div class="message-container flex flex-col items-center md:pt-40 text-center">
                         <!-- Small text -->
-                        <p class="text-sm md:text-2xl mb-6 md-mb-4">GOT A PROJECT IN MIND?</p>
+                        <p class="text-sm md:text-2xl mb-6 md:mb-4">GOT A PROJECT IN MIND?</p>
 
                         <!-- Large heading -->
                         <span class="text-5xl md:text-[7.4rem] leading-[0.9] flex flex-col items-center mb-10 md:mb-0">
@@ -709,6 +717,7 @@
         </div>
     </div>
 
+    <script src="./js/index-timeline-data.js"></script>
     <script src="./js/gsap/gsap.min.js"></script>
     <script src="./js/gsap/ScrollTrigger.min.js"></script>
     <script src="./js/gsap/ScrollSmoother.min.js"></script>
