@@ -161,7 +161,7 @@ function validateForm() {
 function insertHiddenFields() {
     const fields = [
         { name: '_captcha', value: 'false' },
-        { name: '_next', value: 'http://127.0.0.1:3000/src/' },
+        { name: '_next', value: '../index.html' },
         { name: '_subject', value: 'New message from your website!' },
     ];
 
